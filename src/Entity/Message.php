@@ -31,16 +31,24 @@ class Message
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateMessage = null;
 
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $sender = null;
+
     /**
-     * @var Collection<int, User>
+     * @var Collection<int, contact>
      */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messages')]
-    private Collection $sender;
+    #[ORM\ManyToMany(targetEntity: contact::class, inversedBy: 'message')]
+    private Collection $recipient;
 
     public function __construct()
     {
-        $this->sender = new ArrayCollection();
+        $this->recipient = new ArrayCollection();
     }
+
+    
+
+  
 
     public function getId(): ?int
     {
@@ -107,33 +115,43 @@ class Message
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getSender(): Collection
+    public function getSender(): ?User
     {
         return $this->sender;
     }
 
-    public function addSender(User $sender): static
+    public function setSender(?User $sender): static
     {
-        if (!$this->sender->contains($sender)) {
-            $this->sender->add($sender);
-            $sender->setMessages($this);
+        $this->sender = $sender;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, contact>
+     */
+    public function getRecipient(): Collection
+    {
+        return $this->recipient;
+    }
+
+    public function addRecipient(contact $recipient): static
+    {
+        if (!$this->recipient->contains($recipient)) {
+            $this->recipient->add($recipient);
         }
 
         return $this;
     }
 
-    public function removeSender(User $sender): static
+    public function removeRecipient(contact $recipient): static
     {
-        if ($this->sender->removeElement($sender)) {
-            // set the owning side to null (unless already changed)
-            if ($sender->getMessages() === $this) {
-                $sender->setMessages(null);
-            }
-        }
+        $this->recipient->removeElement($recipient);
 
         return $this;
     }
+
+    
+  
+    
 }
