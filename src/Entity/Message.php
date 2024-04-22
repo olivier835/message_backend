@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MessageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,17 @@ class Message
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateMessage = null;
+
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'messages')]
+    private Collection $sender;
+
+    public function __construct()
+    {
+        $this->sender = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +103,36 @@ class Message
     public function setDateMessage(\DateTimeInterface $dateMessage): static
     {
         $this->dateMessage = $dateMessage;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getSender(): Collection
+    {
+        return $this->sender;
+    }
+
+    public function addSender(User $sender): static
+    {
+        if (!$this->sender->contains($sender)) {
+            $this->sender->add($sender);
+            $sender->setMessages($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSender(User $sender): static
+    {
+        if ($this->sender->removeElement($sender)) {
+            // set the owning side to null (unless already changed)
+            if ($sender->getMessages() === $this) {
+                $sender->setMessages(null);
+            }
+        }
 
         return $this;
     }
