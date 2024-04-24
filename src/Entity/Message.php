@@ -12,9 +12,6 @@ use ApiPlatform\Metadata\ApiResource as MetadataApiResource;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 #[MetadataApiResource(
-    collectionOperations: ['get' => ['security' => "is_granted('ROLE_USER')"], 'post' => ['security' => "is_granted('ROLE_USER')"]],
-    itemOperations: ['get' => ['security' => "is_granted('ROLE_USER')"], 'put' => ['security' => "is_granted('ROLE_USER')"], 'delete' => ['security' => "is_granted('ROLE_USER')"]],
-    security: "is_granted('ROLE_USER')"
 )]
 
 class Message

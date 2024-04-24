@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Contact;
+use App\Entity\Langue;
 use App\Entity\Message;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -50,6 +52,33 @@ class AppFixtures extends Fixture
          $message2->setDateMessage(new \DateTime('now'));
          $message2->setSender($userAdmin); // Associé à l'administrateur
          $manager->persist($message2);
+
+          // Création de contacts
+        $contact1 = new Contact();
+        $contact1->setName("Jean Dupont");
+        $contact1->setPhoneNumber(1234567890);
+        $manager->persist($contact1);
+
+        $contact2 = new Contact();
+        $contact2->setName("Marie Curie");
+        $contact2->setPhoneNumber(987654321);
+        $manager->persist($contact2);
+
+        // Supposons que Langue est une entité déjà créée et persistée
+        $langue1 = new Langue(); // Assurez-vous que ces instances sont correctement créées
+        $langue1->setLabel('Français');
+        $manager->persist($langue1);
+
+        $langue2 = new Langue();
+        $langue2->setLabel('Anglais');
+        $manager->persist($langue2);
+
+        // Associer des langues aux contacts
+        $contact1->addLangue($langue1);
+        $contact1->addLangue($langue2);
+
+        $contact2->addLangue($langue2);
+
  
 
         $manager->flush();

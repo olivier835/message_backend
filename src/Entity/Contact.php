@@ -2,11 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ContactRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource(
+    collectionOperations: ['get' => ['security' => "is_granted('ROLE_USER')"], 'post' => ['security' => "is_granted('ROLE_USER')"]],
+    itemOperations: ['get' => ['security' => "is_granted('ROLE_USER')"], 'put' => ['security' => "is_granted('ROLE_USER')"], 'delete' => ['security' => "is_granted('ROLE_USER')"]],
+    security: "is_granted('ROLE_USER')"
+)]
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
 {
