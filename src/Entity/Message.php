@@ -7,11 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource as MetadataApiResource;
+use ApiPlatform\Metadata\ApiResource;
 
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
-#[MetadataApiResource(
+#[ApiResource(
 )]
 
 class Message
@@ -41,9 +41,9 @@ class Message
     private ?User $sender = null;
 
     /**
-     * @var Collection<int, contact>
+     * @var Collection<int, Contact>
      */
-    #[ORM\ManyToMany(targetEntity: contact::class, inversedBy: 'message')]
+    #[ORM\ManyToMany(targetEntity: Contact::class, inversedBy: 'message')]
     private Collection $recipient;
 
     public function __construct()
@@ -133,14 +133,14 @@ class Message
     }
 
     /**
-     * @return Collection<int, contact>
+     * @return Collection<int, Contact>
      */
     public function getRecipient(): Collection
     {
         return $this->recipient;
     }
 
-    public function addRecipient(contact $recipient): static
+    public function addRecipient(Contact $recipient): static
     {
         if (!$this->recipient->contains($recipient)) {
             $this->recipient->add($recipient);
@@ -149,7 +149,7 @@ class Message
         return $this;
     }
 
-    public function removeRecipient(contact $recipient): static
+    public function removeRecipient(Contact $recipient): static
     {
         $this->recipient->removeElement($recipient);
 
