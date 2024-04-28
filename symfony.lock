@@ -1,4 +1,5 @@
 {
+
     "api-platform/core": {
         "version": "3.2",
         "recipe": {
@@ -13,6 +14,7 @@
             "./src/ApiResource/.gitignore"
         ]
     },
+
     "doctrine/doctrine-bundle": {
         "version": "2.12",
         "recipe": {
@@ -27,6 +29,7 @@
             "./src/Repository/.gitignore"
         ]
     },
+<<<<<<< HEAD
     "doctrine/doctrine-fixtures-bundle": {
         "version": "3.5",
         "recipe": {
@@ -39,6 +42,8 @@
             "./src/DataFixtures/AppFixtures.php"
         ]
     },
+=======
+>>>>>>> 105490691cc22c3112799393a0d96c8f02b34bf1
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.3",
         "recipe": {
@@ -52,6 +57,7 @@
             "./migrations/.gitignore"
         ]
     },
+<<<<<<< HEAD
     "lexik/jwt-authentication-bundle": {
         "version": "2.20",
         "recipe": {
@@ -76,6 +82,8 @@
             "./config/packages/nelmio_cors.yaml"
         ]
     },
+=======
+>>>>>>> 105490691cc22c3112799393a0d96c8f02b34bf1
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
