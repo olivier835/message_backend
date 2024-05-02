@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6531ef29-6e5b-40b3-a0e0-5414d57f5777" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +231,7 @@
       <workItem from="1714295901367" duration="6030000" />
       <workItem from="1714303295399" duration="1160000" />
       <workItem from="1714667371797" duration="632000" />
-      <workItem from="1714668348782" duration="8427000" />
+      <workItem from="1714668348782" duration="8621000" />
     </task>
     <servers />
   </component>

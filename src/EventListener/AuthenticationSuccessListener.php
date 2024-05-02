@@ -23,7 +23,7 @@ class AuthenticationSuccessListener extends AuthenticationSuccessHandler
         return new JsonResponse([
             'status'=> $response->getStatusCode(),
             'message'=> 'LOGIN SUCCESS',
-            'result'=> json_decode($response->getContent(),true)
+            'result_data'=> json_decode($response->getContent(),true)
         ]);
     }
 }
