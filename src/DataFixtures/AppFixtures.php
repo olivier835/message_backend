@@ -13,7 +13,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class AppFixtures extends Fixture
 {
     private $userPasswordHasher;
-    
+
     public function __construct(UserPasswordHasherInterface $userPasswordHasher)
     {
         $this->userPasswordHasher = $userPasswordHasher;
@@ -22,14 +22,14 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-       
+
         // Création d'un user "normal"
         $user = new User();
         $user->setEmail("user@bookapi.com");
         $user->setRoles(["ROLE_USER"]);
         $user->setPassword($this->userPasswordHasher->hashPassword($user, "password"));
         $manager->persist($user);
-        
+
         // Création d'un user admin
         $userAdmin = new User();
         $userAdmin->setEmail("admin@bookapi.com");
@@ -40,15 +40,17 @@ class AppFixtures extends Fixture
         // $manager->persist($product);
          // Création des messages
          $message1 = new Message();
-         $message1->setContentMessage("Bonjour, ceci est un message de test.");
-         $message1->setStatus("sent");
-         $message1->setDateMessage(new \DateTime('now'));
+         $message1->setContenu("Bonjour, ceci est un message de test.");
+         $message1->setStatut("sent");
+        $message1->setTradContenu("draft");
+        $message1->setDateMessage(new \DateTime('now'));
          $message1->setSender($user); // Associé à l'utilisateur normal
          $manager->persist($message1);
- 
+
          $message2 = new Message();
-         $message2->setContentMessage("Ceci est un autre message de test.");
-         $message2->setStatus("draft");
+         $message2->setContenu("Ceci est un autre message de test.");
+         $message2->setStatut("draft");
+         $message2->setTradContenu("draft");
          $message2->setDateMessage(new \DateTime('now'));
          $message2->setSender($userAdmin); // Associé à l'administrateur
          $manager->persist($message2);
@@ -66,20 +68,22 @@ class AppFixtures extends Fixture
 
         // Supposons que Langue est une entité déjà créée et persistée
         $langue1 = new Langue(); // Assurez-vous que ces instances sont correctement créées
-        $langue1->setLabel('Français');
+        $langue1->setName('Français');
+        $langue1->setCode('Fr');
         $manager->persist($langue1);
 
         $langue2 = new Langue();
-        $langue2->setLabel('Anglais');
+        $langue2->setName('Anglais');
+        $langue2->setCode('En');
         $manager->persist($langue2);
 
         // Associer des langues aux contacts
-        $contact1->addLangue($langue1);
-        $contact1->addLangue($langue2);
+        /*$contact1->addContactHasLangue($langue1);
+        $contact1->addContactHasLangue($langue2);
 
-        $contact2->addLangue($langue2);
+        $contact2->addContactHasLangue($langue2);*/
 
- 
+
 
         $manager->flush();
     }

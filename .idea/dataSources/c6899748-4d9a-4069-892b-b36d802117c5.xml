@@ -1136,7 +1136,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="307" parent="1" name="messagingapp">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-05-11.12:44:20</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-05-11.15:22:52</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="308" parent="1" name="mysql">
@@ -1216,342 +1216,314 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
-    <table id="330" parent="307" name="doctrine_migration_versions">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_unicode_ci</CollationName>
-    </table>
-    <table id="331" parent="307" name="langue">
+    <table id="330" parent="307" name="langue">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
-    <table id="332" parent="307" name="message">
+    <table id="331" parent="307" name="message">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
-    <table id="333" parent="307" name="messenger_messages">
+    <table id="332" parent="307" name="messenger_messages">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
-    <table id="334" parent="307" name="user">
+    <table id="333" parent="307" name="user">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
-    <column id="335" parent="327" name="id">
+    <column id="334" parent="327" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="336" parent="327" name="name">
+    <column id="335" parent="327" name="name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="337" parent="327" name="phone_number">
+    <column id="336" parent="327" name="phone_number">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="338" parent="327" name="PRIMARY">
+    <index id="337" parent="327" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="339" parent="327" name="PRIMARY">
+    <key id="338" parent="327" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="340" parent="328" name="id">
+    <column id="339" parent="328" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="341" parent="328" name="contact_id">
+    <column id="340" parent="328" name="contact_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="342" parent="328" name="langue_id">
+    <column id="341" parent="328" name="langue_id">
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <foreign-key id="343" parent="328" name="FK_78CC3B82E7A1254A">
+    <foreign-key id="342" parent="328" name="FK_78CC3B82E7A1254A">
       <ColNames>contact_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>contact</RefTableName>
     </foreign-key>
-    <foreign-key id="344" parent="328" name="FK_78CC3B822AADBACD">
+    <foreign-key id="343" parent="328" name="FK_78CC3B822AADBACD">
       <ColNames>langue_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>langue</RefTableName>
     </foreign-key>
-    <index id="345" parent="328" name="PRIMARY">
+    <index id="344" parent="328" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="346" parent="328" name="IDX_78CC3B82E7A1254A">
+    <index id="345" parent="328" name="IDX_78CC3B82E7A1254A">
       <ColNames>contact_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="347" parent="328" name="IDX_78CC3B822AADBACD">
+    <index id="346" parent="328" name="IDX_78CC3B822AADBACD">
       <ColNames>langue_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="348" parent="328" name="PRIMARY">
+    <key id="347" parent="328" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="349" parent="329" name="id">
+    <column id="348" parent="329" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="350" parent="329" name="contact_id">
+    <column id="349" parent="329" name="contact_id">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="351" parent="329" name="message_id">
+    <column id="350" parent="329" name="message_id">
       <DasType>int|0s</DasType>
       <Position>3</Position>
     </column>
-    <foreign-key id="352" parent="329" name="FK_BFE0E71AE7A1254A">
+    <foreign-key id="351" parent="329" name="FK_BFE0E71AE7A1254A">
       <ColNames>contact_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>contact</RefTableName>
     </foreign-key>
-    <foreign-key id="353" parent="329" name="FK_BFE0E71A537A1329">
+    <foreign-key id="352" parent="329" name="FK_BFE0E71A537A1329">
       <ColNames>message_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>message</RefTableName>
     </foreign-key>
-    <index id="354" parent="329" name="PRIMARY">
+    <index id="353" parent="329" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="355" parent="329" name="IDX_BFE0E71AE7A1254A">
+    <index id="354" parent="329" name="IDX_BFE0E71AE7A1254A">
       <ColNames>contact_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="356" parent="329" name="IDX_BFE0E71A537A1329">
+    <index id="355" parent="329" name="IDX_BFE0E71A537A1329">
       <ColNames>message_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="357" parent="329" name="PRIMARY">
+    <key id="356" parent="329" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="358" parent="330" name="version">
-      <DasType>varchar(191)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="359" parent="330" name="executed_at">
-      <DasType>datetime|0s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="360" parent="330" name="execution_time">
-      <DasType>int|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <index id="361" parent="330" name="PRIMARY">
-      <ColNames>version</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="362" parent="330" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="363" parent="331" name="id">
+    <column id="357" parent="330" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="364" parent="331" name="name">
+    <column id="358" parent="330" name="name">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="365" parent="331" name="code">
+    <column id="359" parent="330" name="code">
       <DasType>varchar(4)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <index id="366" parent="331" name="PRIMARY">
+    <index id="360" parent="330" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="367" parent="331" name="PRIMARY">
+    <key id="361" parent="330" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="368" parent="332" name="id">
+    <column id="362" parent="331" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="369" parent="332" name="sender_id">
+    <column id="363" parent="331" name="sender_id">
       <DasType>int|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="370" parent="332" name="contenu">
+    <column id="364" parent="331" name="contenu">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="371" parent="332" name="trad_contenu">
+    <column id="365" parent="331" name="trad_contenu">
       <DasType>longtext|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="372" parent="332" name="date_message">
+    <column id="366" parent="331" name="date_message">
       <DasType>date|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="373" parent="332" name="schedule_date">
+    <column id="367" parent="331" name="schedule_date">
       <DasType>datetime|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="374" parent="332" name="statut">
+    <column id="368" parent="331" name="statut">
       <DasType>tinyint(1)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <foreign-key id="375" parent="332" name="FK_B6BD307FF624B39D">
+    <foreign-key id="369" parent="331" name="FK_B6BD307FF624B39D">
       <ColNames>sender_id</ColNames>
       <RefColNames>id</RefColNames>
       <RefTableName>user</RefTableName>
     </foreign-key>
-    <index id="376" parent="332" name="PRIMARY">
+    <index id="370" parent="331" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="377" parent="332" name="UNIQ_B6BD307FF624B39D">
+    <index id="371" parent="331" name="UNIQ_B6BD307FF624B39D">
       <ColNames>sender_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="378" parent="332" name="PRIMARY">
+    <key id="372" parent="331" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="379" parent="332" name="UNIQ_B6BD307FF624B39D">
+    <key id="373" parent="331" name="UNIQ_B6BD307FF624B39D">
       <UnderlyingIndexName>UNIQ_B6BD307FF624B39D</UnderlyingIndexName>
     </key>
-    <column id="380" parent="333" name="id">
+    <column id="374" parent="332" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>bigint|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="381" parent="333" name="body">
+    <column id="375" parent="332" name="body">
       <DasType>longtext|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="382" parent="333" name="headers">
+    <column id="376" parent="332" name="headers">
       <DasType>longtext|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="383" parent="333" name="queue_name">
+    <column id="377" parent="332" name="queue_name">
       <DasType>varchar(190)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="384" parent="333" name="created_at">
+    <column id="378" parent="332" name="created_at">
       <Comment>(DC2Type:datetime_immutable)</Comment>
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="385" parent="333" name="available_at">
+    <column id="379" parent="332" name="available_at">
       <Comment>(DC2Type:datetime_immutable)</Comment>
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="386" parent="333" name="delivered_at">
+    <column id="380" parent="332" name="delivered_at">
       <Comment>(DC2Type:datetime_immutable)</Comment>
       <DasType>datetime|0s</DasType>
       <Position>7</Position>
     </column>
-    <index id="387" parent="333" name="PRIMARY">
+    <index id="381" parent="332" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="388" parent="333" name="IDX_75EA56E0FB7336F0">
+    <index id="382" parent="332" name="IDX_75EA56E0FB7336F0">
       <ColNames>queue_name</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="389" parent="333" name="IDX_75EA56E0E3BD61CE">
+    <index id="383" parent="332" name="IDX_75EA56E0E3BD61CE">
       <ColNames>available_at</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="390" parent="333" name="IDX_75EA56E016BA31DB">
+    <index id="384" parent="332" name="IDX_75EA56E016BA31DB">
       <ColNames>delivered_at</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="391" parent="333" name="PRIMARY">
+    <key id="385" parent="332" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="392" parent="334" name="id">
+    <column id="386" parent="333" name="id">
       <AutoIncrement>1</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="393" parent="334" name="email">
+    <column id="387" parent="333" name="email">
       <DasType>varchar(180)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="394" parent="334" name="roles">
+    <column id="388" parent="333" name="roles">
       <DasType>json|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="395" parent="334" name="password">
+    <column id="389" parent="333" name="password">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="396" parent="334" name="PRIMARY">
+    <index id="390" parent="333" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="397" parent="334" name="UNIQ_IDENTIFIER_EMAIL">
+    <index id="391" parent="333" name="UNIQ_IDENTIFIER_EMAIL">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="398" parent="334" name="PRIMARY">
+    <key id="392" parent="333" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="399" parent="334" name="UNIQ_IDENTIFIER_EMAIL">
+    <key id="393" parent="333" name="UNIQ_IDENTIFIER_EMAIL">
       <UnderlyingIndexName>UNIQ_IDENTIFIER_EMAIL</UnderlyingIndexName>
     </key>
   </database-model>
