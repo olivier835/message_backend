@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6531ef29-6e5b-40b3-a0e0-5414d57f5777" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventListener/AuthenticationSuccessListener.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c6899748-4d9a-4069-892b-b36d802117c5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c6899748-4d9a-4069-892b-b36d802117c5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20240511124403.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20240514124234.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SmsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SmsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ContactHasLangueFixtures.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Contact.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/ContactHasLangue.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Langue.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Langue.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ContactHasLangueRepository.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +180,14 @@
       <path value="$PROJECT_DIR$/vendor/lcobucci/jwt" />
       <path value="$PROJECT_DIR$/vendor/lexik/jwt-authentication-bundle" />
       <path value="$PROJECT_DIR$/vendor/lcobucci/clock" />
+      <path value="$PROJECT_DIR$/vendor/twilio/sdk" />
+      <path value="$PROJECT_DIR$/vendor/deeplcom/deepl-php" />
+      <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
+      <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
+      <path value="$PROJECT_DIR$/vendor/php-http/multipart-stream-builder" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
@@ -189,13 +206,14 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ariel&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/tech/Projets/projets/sms&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -232,6 +250,10 @@
       <workItem from="1714303295399" duration="1160000" />
       <workItem from="1714667371797" duration="632000" />
       <workItem from="1714668348782" duration="8621000" />
+      <workItem from="1714939183410" duration="14424000" />
+      <workItem from="1715166419746" duration="23681000" />
+      <workItem from="1715414756282" duration="21352000" />
+      <workItem from="1715634996259" duration="17567000" />
     </task>
     <servers />
   </component>
@@ -251,5 +273,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

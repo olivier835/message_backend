@@ -2,18 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\MessageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
-
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
-#[ApiResource(
-)]
-
+#[ApiResource]
 class Message
 {
     #[ORM\Id]
@@ -21,101 +18,96 @@ class Message
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $contentMessage = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $status = null;
+    private ?string $contenu = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $scheduleDate = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $trad_contenu = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $scheduleTime = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $date_message = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateMessage = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $schedule_date = null;
 
-    #[ORM\ManyToOne(inversedBy: 'messages')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\Column]
+    private ?bool $statut = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?User $sender = null;
 
     /**
-     * @var Collection<int, Contact>
+     * @var Collection<int, ContactHasMessage>
      */
-    #[ORM\ManyToMany(targetEntity: Contact::class, inversedBy: 'message')]
-    private Collection $recipient;
+    #[ORM\OneToMany(targetEntity: ContactHasMessage::class, mappedBy: 'Message')]
+    private Collection $contactHasMessages;
 
     public function __construct()
     {
-        $this->recipient = new ArrayCollection();
+        $this->contactHasMessages = new ArrayCollection();
     }
-
-    
-
-
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getContentMessage(): ?string
+    public function getContenu(): ?string
     {
-        return $this->contentMessage;
+        return $this->contenu;
     }
 
-    public function setContentMessage(string $contentMessage): static
+    public function setContenu(string $contenu): static
     {
-        $this->contentMessage = $contentMessage;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
-    public function getStatus(): ?string
+    public function getTradContenu(): ?string
     {
-        return $this->status;
+        return $this->trad_contenu;
     }
 
-    public function setStatus(string $status): static
+    public function setTradContenu(string $trad_contenu): static
     {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getScheduleDate(): ?\DateTimeInterface
-    {
-        return $this->scheduleDate;
-    }
-
-    public function setScheduleDate(?\DateTimeInterface $scheduleDate): static
-    {
-        $this->scheduleDate = $scheduleDate;
-
-        return $this;
-    }
-
-    public function getScheduleTime(): ?\DateTimeInterface
-    {
-        return $this->scheduleTime;
-    }
-
-    public function setScheduleTime(?\DateTimeInterface $scheduleTime): static
-    {
-        $this->scheduleTime = $scheduleTime;
+        $this->trad_contenu = $trad_contenu;
 
         return $this;
     }
 
     public function getDateMessage(): ?\DateTimeInterface
     {
-        return $this->dateMessage;
+        return $this->date_message;
     }
 
-    public function setDateMessage(\DateTimeInterface $dateMessage): static
+    public function setDateMessage(\DateTimeInterface $date_message): static
     {
-        $this->dateMessage = $dateMessage;
+        $this->date_message = $date_message;
+
+        return $this;
+    }
+
+    public function getScheduleDate(): ?\DateTimeInterface
+    {
+        return $this->schedule_date;
+    }
+
+    public function setScheduleDate(\DateTimeInterface $schedule_date): static
+    {
+        $this->schedule_date = $schedule_date;
+
+        return $this;
+    }
+
+    public function isStatut(): ?bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(bool $statut): static
+    {
+        $this->statut = $statut;
 
         return $this;
     }
@@ -133,30 +125,32 @@ class Message
     }
 
     /**
-     * @return Collection<int, Contact>
+     * @return Collection<int, ContactHasMessage>
      */
-    public function getRecipient(): Collection
+    public function getContactHasMessages(): Collection
     {
-        return $this->recipient;
+        return $this->contactHasMessages;
     }
 
-    public function addRecipient(Contact $recipient): static
+    public function addContactHasMessage(ContactHasMessage $contactHasMessage): static
     {
-        if (!$this->recipient->contains($recipient)) {
-            $this->recipient->add($recipient);
+        if (!$this->contactHasMessages->contains($contactHasMessage)) {
+            $this->contactHasMessages->add($contactHasMessage);
+            $contactHasMessage->setMessage($this);
         }
 
         return $this;
     }
 
-    public function removeRecipient(Contact $recipient): static
+    public function removeContactHasMessage(ContactHasMessage $contactHasMessage): static
     {
-        $this->recipient->removeElement($recipient);
+        if ($this->contactHasMessages->removeElement($contactHasMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($contactHasMessage->getMessage() === $this) {
+                $contactHasMessage->setMessage(null);
+            }
+        }
 
         return $this;
     }
-
-    
-  
-    
 }

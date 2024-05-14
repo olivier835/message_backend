@@ -7,28 +7,26 @@ use App\Repository\LangueRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource(
-    normalizationContext: ['groups' => ['read'], 'enable_max_depth' => true],
-    denormalizationContext: ['groups' => ['write']]
-)]
 #[ORM\Entity(repositoryClass: LangueRepository::class)]
+#[ApiResource]
 class Langue
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["read", "write"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $label = null;
+    private ?string $name = null;
+
+    #[ORM\Column(length: 4)]
+    private ?string $code = null;
 
     /**
      * @var Collection<int, Contact>
      */
-    #[ORM\ManyToMany(targetEntity: Contact::class, mappedBy: 'langues')]
+    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'langue', orphanRemoval: true)]
     private Collection $contacts;
 
     public function __construct()
@@ -41,14 +39,26 @@ class Langue
         return $this->id;
     }
 
-    public function getLabel(): ?string
+    public function getName(): ?string
     {
-        return $this->label;
+        return $this->name;
     }
 
-    public function setLabel(string $label): static
+    public function setName(string $name): static
     {
-        $this->label = $label;
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(string $code): static
+    {
+        $this->code = $code;
 
         return $this;
     }
@@ -65,7 +75,7 @@ class Langue
     {
         if (!$this->contacts->contains($contact)) {
             $this->contacts->add($contact);
-            $contact->addLangue($this);
+            $contact->setLangue($this);
         }
 
         return $this;
@@ -74,9 +84,14 @@ class Langue
     public function removeContact(Contact $contact): static
     {
         if ($this->contacts->removeElement($contact)) {
-            $contact->removeLangue($this);
+            // set the owning side to null (unless already changed)
+            if ($contact->getLangue() === $this) {
+                $contact->setLangue(null);
+            }
         }
 
         return $this;
     }
+
+
 }

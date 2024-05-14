@@ -8,9 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ApiResource(
-)]
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
+#[ApiResource]
 class Contact
 {
     #[ORM\Id]
@@ -21,25 +20,17 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column]
-    private ?int $phoneNumber = null;
+    #[ORM\Column(length: 255)]
+    private ?string $phone_number = null;
 
-    /**
-     * @var Collection<int, Message>
-     */
-    #[ORM\ManyToMany(targetEntity: Message::class, mappedBy: 'recipient')]
-    private Collection $message;
+    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Langue $langue = null;
 
-    /**
-     * @var Collection<int, Langue>
-     */
-    #[ORM\ManyToMany(targetEntity: Langue::class, inversedBy: 'contacts')]
-    private Collection $langues;
 
     public function __construct()
     {
-        $this->message = new ArrayCollection();
-        $this->langues = new ArrayCollection();
+        $this->contactHasMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,65 +50,56 @@ class Contact
         return $this;
     }
 
-    public function getPhoneNumber(): ?int
+    public function getPhoneNumber(): ?string
     {
-        return $this->phoneNumber;
+        return $this->phone_number;
     }
 
-    public function setPhoneNumber(int $phoneNumber): static
+    public function setPhoneNumber(string $phone_number): static
     {
-        $this->phoneNumber = $phoneNumber;
+        $this->phone_number = $phone_number;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Message>
+     * @return Collection<int, ContactHasMessage>
      */
-    public function getMessage(): Collection
+    public function getContactHasMessages(): Collection
     {
-        return $this->message;
+        return $this->contactHasMessages;
     }
 
-    public function addMessage(Message $message): static
+    public function addContactHasMessage(ContactHasMessage $contactHasMessage): static
     {
-        if (!$this->message->contains($message)) {
-            $this->message->add($message);
-            $message->addRecipient($this);
+        if (!$this->contactHasMessages->contains($contactHasMessage)) {
+            $this->contactHasMessages->add($contactHasMessage);
+            $contactHasMessage->setContact($this);
         }
 
         return $this;
     }
 
-    public function removeMessage(Message $message): static
+    public function removeContactHasMessage(ContactHasMessage $contactHasMessage): static
     {
-        if ($this->message->removeElement($message)) {
-            $message->removeRecipient($this);
+        if ($this->contactHasMessages->removeElement($contactHasMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($contactHasMessage->getContact() === $this) {
+                $contactHasMessage->setContact(null);
+            }
         }
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Langue>
-     */
-    public function getLangues(): Collection
+    public function getLangue(): ?Langue
     {
-        return $this->langues;
+        return $this->langue;
     }
 
-    public function addLangue(Langue $langue): static
+    public function setLangue(?Langue $langue): static
     {
-        if (!$this->langues->contains($langue)) {
-            $this->langues->add($langue);
-        }
-
-        return $this;
-    }
-
-    public function removeLangue(Langue $langue): static
-    {
-        $this->langues->removeElement($langue);
+        $this->langue = $langue;
 
         return $this;
     }
