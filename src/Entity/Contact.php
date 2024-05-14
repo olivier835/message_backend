@@ -23,21 +23,13 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $phone_number = null;
 
-    /**
-     * @var Collection<int, ContactHasLangue>
-     */
-    #[ORM\OneToMany(targetEntity: ContactHasLangue::class, mappedBy: 'contact', orphanRemoval: true)]
-    private Collection $contactHasLangues;
+    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Langue $langue = null;
 
-    /**
-     * @var Collection<int, ContactHasMessage>
-     */
-    #[ORM\OneToMany(targetEntity: ContactHasMessage::class, mappedBy: 'contact')]
-    private Collection $contactHasMessages;
 
     public function __construct()
     {
-        $this->contactHasLangues = new ArrayCollection();
         $this->contactHasMessages = new ArrayCollection();
     }
 
@@ -71,36 +63,6 @@ class Contact
     }
 
     /**
-     * @return Collection<int, ContactHasLangue>
-     */
-    public function getContactHasLangues(): Collection
-    {
-        return $this->contactHasLangues;
-    }
-
-    public function addContactHasLangue(ContactHasLangue $contactHasLangue): static
-    {
-        if (!$this->contactHasLangues->contains($contactHasLangue)) {
-            $this->contactHasLangues->add($contactHasLangue);
-            $contactHasLangue->setContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContactHasLangue(ContactHasLangue $contactHasLangue): static
-    {
-        if ($this->contactHasLangues->removeElement($contactHasLangue)) {
-            // set the owning side to null (unless already changed)
-            if ($contactHasLangue->getContact() === $this) {
-                $contactHasLangue->setContact(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, ContactHasMessage>
      */
     public function getContactHasMessages(): Collection
@@ -126,6 +88,18 @@ class Contact
                 $contactHasMessage->setContact(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLangue(): ?Langue
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(?Langue $langue): static
+    {
+        $this->langue = $langue;
 
         return $this;
     }

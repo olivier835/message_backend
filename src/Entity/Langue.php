@@ -24,14 +24,14 @@ class Langue
     private ?string $code = null;
 
     /**
-     * @var Collection<int, ContactHasLangue>
+     * @var Collection<int, Contact>
      */
-    #[ORM\OneToMany(targetEntity: ContactHasLangue::class, mappedBy: 'langue')]
-    private Collection $contactHasLangues;
+    #[ORM\OneToMany(targetEntity: Contact::class, mappedBy: 'langue', orphanRemoval: true)]
+    private Collection $contacts;
 
     public function __construct()
     {
-        $this->contactHasLangues = new ArrayCollection();
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,32 +64,34 @@ class Langue
     }
 
     /**
-     * @return Collection<int, ContactHasLangue>
+     * @return Collection<int, Contact>
      */
-    public function getContactHasLangues(): Collection
+    public function getContacts(): Collection
     {
-        return $this->contactHasLangues;
+        return $this->contacts;
     }
 
-    public function addContactHasLangue(ContactHasLangue $contactHasLangue): static
+    public function addContact(Contact $contact): static
     {
-        if (!$this->contactHasLangues->contains($contactHasLangue)) {
-            $this->contactHasLangues->add($contactHasLangue);
-            $contactHasLangue->setLangue($this);
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts->add($contact);
+            $contact->setLangue($this);
         }
 
         return $this;
     }
 
-    public function removeContactHasLangue(ContactHasLangue $contactHasLangue): static
+    public function removeContact(Contact $contact): static
     {
-        if ($this->contactHasLangues->removeElement($contactHasLangue)) {
+        if ($this->contacts->removeElement($contact)) {
             // set the owning side to null (unless already changed)
-            if ($contactHasLangue->getLangue() === $this) {
-                $contactHasLangue->setLangue(null);
+            if ($contact->getLangue() === $this) {
+                $contact->setLangue(null);
             }
         }
 
         return $this;
     }
+
+
 }

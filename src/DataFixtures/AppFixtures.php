@@ -55,17 +55,6 @@ class AppFixtures extends Fixture
          $message2->setSender($userAdmin); // Associé à l'administrateur
          $manager->persist($message2);
 
-          // Création de contacts
-        $contact1 = new Contact();
-        $contact1->setName("Jean Dupont");
-        $contact1->setPhoneNumber(1234567890);
-        $manager->persist($contact1);
-
-        $contact2 = new Contact();
-        $contact2->setName("Marie Curie");
-        $contact2->setPhoneNumber(987654321);
-        $manager->persist($contact2);
-
         // Supposons que Langue est une entité déjà créée et persistée
         $langue1 = new Langue(); // Assurez-vous que ces instances sont correctement créées
         $langue1->setName('Français');
@@ -77,13 +66,18 @@ class AppFixtures extends Fixture
         $langue2->setCode('En');
         $manager->persist($langue2);
 
-        // Associer des langues aux contacts
-        /*$contact1->addContactHasLangue($langue1);
-        $contact1->addContactHasLangue($langue2);
+          // Création de contacts
+        $contact1 = new Contact();
+        $contact1->setName("Jean Dupont");
+        $contact1->setPhoneNumber(1234567890);
+        $contact1->setLangue($langue1);
+        $manager->persist($contact1);
 
-        $contact2->addContactHasLangue($langue2);*/
-
-
+        $contact2 = new Contact();
+        $contact2->setName("Marie Curie");
+        $contact2->setPhoneNumber(987654321);
+        $contact2->setLangue($langue2);
+        $manager->persist($contact2);
 
         $manager->flush();
     }
