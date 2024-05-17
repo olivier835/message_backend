@@ -30,7 +30,7 @@ class Contact
 
     public function __construct()
     {
-        $this->contactHasMessages = new ArrayCollection();
+        //$this->contactHasMessages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,36 +58,6 @@ class Contact
     public function setPhoneNumber(string $phone_number): static
     {
         $this->phone_number = $phone_number;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ContactHasMessage>
-     */
-    public function getContactHasMessages(): Collection
-    {
-        return $this->contactHasMessages;
-    }
-
-    public function addContactHasMessage(ContactHasMessage $contactHasMessage): static
-    {
-        if (!$this->contactHasMessages->contains($contactHasMessage)) {
-            $this->contactHasMessages->add($contactHasMessage);
-            $contactHasMessage->setContact($this);
-        }
-
-        return $this;
-    }
-
-    public function removeContactHasMessage(ContactHasMessage $contactHasMessage): static
-    {
-        if ($this->contactHasMessages->removeElement($contactHasMessage)) {
-            // set the owning side to null (unless already changed)
-            if ($contactHasMessage->getContact() === $this) {
-                $contactHasMessage->setContact(null);
-            }
-        }
 
         return $this;
     }

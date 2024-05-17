@@ -58,12 +58,12 @@ class AppFixtures extends Fixture
         // Supposons que Langue est une entité déjà créée et persistée
         $langue1 = new Langue(); // Assurez-vous que ces instances sont correctement créées
         $langue1->setName('Français');
-        $langue1->setCode('Fr');
+        $langue1->setCode('fr-Fr');
         $manager->persist($langue1);
 
         $langue2 = new Langue();
         $langue2->setName('Anglais');
-        $langue2->setCode('En');
+        $langue2->setCode('en-GB');
         $manager->persist($langue2);
 
           // Création de contacts

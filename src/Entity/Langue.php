@@ -20,7 +20,7 @@ class Langue
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 4)]
+    #[ORM\Column(length: 10)]
     private ?string $code = null;
 
     /**
