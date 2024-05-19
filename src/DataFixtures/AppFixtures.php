@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Contact;
+use App\Entity\ContactHasMessage;
 use App\Entity\Langue;
 use App\Entity\Message;
 use App\Entity\User;
@@ -36,14 +37,13 @@ class AppFixtures extends Fixture
         $userAdmin->setRoles(["ROLE_ADMIN"]);
         $userAdmin->setPassword($this->userPasswordHasher->hashPassword($userAdmin, "password"));
         $manager->persist($userAdmin);
-        // $product = new Product();
-        // $manager->persist($product);
+
          // Création des messages
          $message1 = new Message();
          $message1->setContenu("Bonjour, ceci est un message de test.");
          $message1->setStatut("sent");
-        $message1->setTradContenu("draft");
-        $message1->setDateMessage(new \DateTime('now'));
+         $message1->setTradContenu("draft");
+         $message1->setDateMessage(new \DateTime('now'));
          $message1->setSender($user); // Associé à l'utilisateur normal
          $manager->persist($message1);
 
@@ -69,15 +69,25 @@ class AppFixtures extends Fixture
           // Création de contacts
         $contact1 = new Contact();
         $contact1->setName("Jean Dupont");
-        $contact1->setPhoneNumber(1234567890);
+        $contact1->setPhoneNumber(+32465910574);
         $contact1->setLangue($langue1);
         $manager->persist($contact1);
 
         $contact2 = new Contact();
         $contact2->setName("Marie Curie");
-        $contact2->setPhoneNumber(987654321);
+        $contact2->setPhoneNumber(+32465910574);
         $contact2->setLangue($langue2);
         $manager->persist($contact2);
+
+        $contactMessage = new ContactHasMessage();
+        $contactMessage->setContact($contact1);
+        $contactMessage->setMessage($message1);
+        $manager->persist($contactMessage);
+
+        $contactMessage2 = new ContactHasMessage();
+        $contactMessage2->setContact($contact2);
+        $contactMessage2->setMessage($message2);
+        $manager->persist($contactMessage2);
 
         $manager->flush();
     }

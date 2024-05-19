@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6531ef29-6e5b-40b3-a0e0-5414d57f5777" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/AuthController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/auth/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/c6899748-4d9a-4069-892b-b36d802117c5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c6899748-4d9a-4069-892b-b36d802117c5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20240514124234.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20240517161834.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/SmsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SmsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/AppFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Contact.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Contact.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Langue.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Langue.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +252,9 @@
       <workItem from="1715634996259" duration="22026000" />
       <workItem from="1715803381826" duration="3577000" />
       <workItem from="1715892892898" duration="5809000" />
-      <workItem from="1715926015499" duration="11704000" />
+      <workItem from="1715926015499" duration="17061000" />
+      <workItem from="1716153296219" duration="31000" />
+      <workItem from="1716153347207" duration="615000" />
     </task>
     <servers />
   </component>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\ContactHasMessage;
 use App\Entity\Message;
 use App\Repository\ContactHasMessageRepository;
 use App\Repository\ContactRepository;
@@ -43,7 +44,7 @@ class SmsController extends AbstractController
     #[Route('/sms', name: 'app_sms', methods: ['POST'])]
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
-        $authKey = 'b46bc345-4e00-468a-ba66-a2d06082044b:fx';
+        $authKey = $_ENV["DEEPL_API_KEY"];
         $translator = new \DeepL\Translator($authKey);
         $content = json_decode($request->getContent(), true);
         //dd($content);
@@ -63,24 +64,30 @@ class SmsController extends AbstractController
         $message->setTradContenu($result->text);
         //$message->setSender($content['sender']);
 
-        //$entityManager = $this->entityManager->getManager();
         $this->entityManager->persist($message);
         $this->entityManager->flush();
 
-        $twilio = new Client("AC428c28c185b4cb9a6b3f38e83ff314da", "b9c1ebc7f8fd477672ca2fe77d51c21d");
+        $twilio = new Client($_ENV["TWILIO_ACCOUNT_ID"], $_ENV["TWILIO_AUTH_TOKEN"]);
         for ($i = 0; $i < count($contacts); $i++) {
-        $sms = $twilio->messages->create($contacts[$i]->getPhoneNumber(),
+        /*$sms = $twilio->messages->create($contacts[$i]->getPhoneNumber(),
             [
-                'messagingserviceSid' => "MG1fe0b4539ed464ce7cf6deb63330b7b8",
+                'messagingserviceSid' => $_ENV["TWILIO_MESSAGING_APP"],
                 'body' => $result->text,
                 'sendAt' => isset($content['schedule_date']) ? new \DateTime($content['schedule_date']) : new \DateTime(),
                 "scheduleType" => "fixed",
-            ]);
+            ]);*/
+        $contactMessage = new ContactHasMessage();
+        $contactMessage->setContact($contacts);
+        $contactMessage->setMessage($message[$i]);
+        $this->entityManager->persist($contactMessage);
+        $this->entityManager->flush();
+
         }
-        if (in_array($sms->status, ['scheduled', 'accepted'])) {
+
+        //if (in_array($sms->status, ['scheduled', 'accepted'])) {
             return new JsonResponse("Message sent successfully", 200);
-        } else {
+        /*} else {
             return new JsonResponse("Error", 200);
-        }
+        }*/
     }
 }
