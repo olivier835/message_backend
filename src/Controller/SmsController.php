@@ -69,25 +69,25 @@ class SmsController extends AbstractController
 
         $twilio = new Client($_ENV["TWILIO_ACCOUNT_ID"], $_ENV["TWILIO_AUTH_TOKEN"]);
         for ($i = 0; $i < count($contacts); $i++) {
-        /*$sms = $twilio->messages->create($contacts[$i]->getPhoneNumber(),
+        $sms = $twilio->messages->create($contacts[$i]->getPhoneNumber(),
             [
                 'messagingserviceSid' => $_ENV["TWILIO_MESSAGING_APP"],
                 'body' => $result->text,
                 'sendAt' => isset($content['schedule_date']) ? new \DateTime($content['schedule_date']) : new \DateTime(),
                 "scheduleType" => "fixed",
-            ]);*/
-        $contactMessage = new ContactHasMessage();
+            ]);
+        /*$contactMessage = new ContactHasMessage();
         $contactMessage->setContact($contacts);
         $contactMessage->setMessage($message[$i]);
         $this->entityManager->persist($contactMessage);
-        $this->entityManager->flush();
+        $this->entityManager->flush();*/
 
         }
 
-        //if (in_array($sms->status, ['scheduled', 'accepted'])) {
+        if (in_array($sms->status, ['scheduled', 'accepted'])) {
             return new JsonResponse("Message sent successfully", 200);
-        /*} else {
+        } else {
             return new JsonResponse("Error", 200);
-        }*/
+        }
     }
 }
